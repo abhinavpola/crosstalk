@@ -79,7 +79,8 @@ export const sendMessageToModel = async (message, settings) => {
         response = await client.post('/chat/completions', {
           model: modelName,
           messages: [{ role: 'user', content: actualMessage }],
-          max_tokens: 1000
+          max_tokens: settings.maxTokens || 1000,
+          temperature: parseFloat(settings.temperature) || 0.7
         });
         responseContent = response.data.choices[0].message.content;
         break;
@@ -89,7 +90,8 @@ export const sendMessageToModel = async (message, settings) => {
         response = await client.post('/messages', {
           model: modelName,
           messages: [{ role: 'user', content: actualMessage }],
-          max_tokens: 1000
+          max_tokens: settings.maxTokens || 1000,
+          temperature: parseFloat(settings.temperature) || 0.7
         });
         responseContent = response.data.content[0].text;
         break;
@@ -100,8 +102,8 @@ export const sendMessageToModel = async (message, settings) => {
         response = await client.post('', {
           model: modelName,
           messages: [{ role: 'user', content: actualMessage }],
-          temperature: 0.7,
-          max_tokens: 1000
+          temperature: parseFloat(settings.temperature) || 0.7,
+          max_tokens: settings.maxTokens || 1000
         });
         // Parse response based on expected format
         console.log('Response from custom API:', response.data);

@@ -24,6 +24,8 @@ const App = () => {
                 apiKey: savedSettings.apiKey || '',
                 targetLanguage: savedSettings.targetLanguage || 'es',
                 translationApiKey: savedSettings.translationApiKey || '',
+                temperature: savedSettings.temperature || 0.7,
+                maxTokens: savedSettings.maxTokens || 1000,
             };
         } catch (error) {
             console.error('Error loading saved settings:', error);
@@ -34,6 +36,8 @@ const App = () => {
                 apiKey: '',
                 targetLanguage: 'es',
                 translationApiKey: '',
+                temperature: 0.7,
+                maxTokens: 1000,
             };
         }
     };
@@ -45,6 +49,7 @@ const App = () => {
     const [directModelMessages, setDirectModelMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentLogId, setCurrentLogId] = useState(getCurrentLogId());
+    const [showSettings, setShowSettings] = useState(false);
 
     // Load previous conversation when component mounts
     useEffect(() => {
@@ -390,20 +395,29 @@ const App = () => {
                 <h1>CrossTalk: AI Translation Interface</h1>
                 <p>Test AI models in different languages</p>
                 <div className="header-controls">
-                    <button 
-                        className="reset-button"
-                        onClick={handleReset}
-                        title="Start a new conversation and download the current log"
-                    >
-                        New Conversation
-                    </button>
+                    <div className="control-buttons">
+                        <button 
+                            className="control-button reset-button"
+                            onClick={handleReset}
+                            title="Start a new conversation and download the current log"
+                        >
+                            New Conversation
+                        </button>
+                        <button 
+                            className="control-button settings-toggle"
+                            onClick={() => setShowSettings(!showSettings)}
+                            title="Toggle settings visibility"
+                        >
+                            {showSettings ? 'Hide Settings' : 'Show Settings'}
+                        </button>
+                    </div>
                     <div className="log-info">
                         Log ID: {currentLogId}
                     </div>
                 </div>
             </div>
 
-            <Settings settings={settings} setSettings={setSettings} />
+            <Settings settings={settings} setSettings={setSettings} visible={showSettings} />
 
             <div className="chat-container">
                 <ChatSide

@@ -32,8 +32,12 @@ body {
   margin-top: 10px;
 }
 
-.reset-button {
-  background-color: #0084ff;
+.control-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.control-button {
   color: white;
   border: none;
   border-radius: 4px;
@@ -43,8 +47,20 @@ body {
   transition: background-color 0.2s;
 }
 
+.reset-button {
+  background-color: #0084ff;
+}
+
 .reset-button:hover {
   background-color: #0073e6;
+}
+
+.settings-toggle {
+  background-color: #4caf50;
+}
+
+.settings-toggle:hover {
+  background-color: #3d8b40;
 }
 
 .log-info {
@@ -232,6 +248,48 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+}
+
+.range-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.setting-range {
+  flex: 1;
+  height: 5px;
+  -webkit-appearance: none;
+  background: #e1e4e8;
+  outline: none;
+  border-radius: 5px;
+}
+
+.setting-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #0084ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.setting-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #0084ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.range-value {
+  width: 35px;
+  text-align: center;
+  font-size: 14px;
+  background: #f0f2f5;
+  padding: 3px 6px;
+  border-radius: 4px;
 }
 
 .divider {
