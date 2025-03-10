@@ -392,9 +392,10 @@ const App = () => {
     return (
         <div className="app-container">
             <div className="app-header">
-                <h1>CrossTalk: AI Translation Interface</h1>
-                <p>Test AI models in different languages</p>
-                <div className="header-controls">
+                <div className="title-section">
+                    <h1>CrossTalk: AI Translation Interface</h1>
+                    <p className="subtitle">Test AI models in different languages</p>
+                
                     <div className="control-buttons">
                         <button 
                             className="control-button reset-button"
@@ -411,9 +412,9 @@ const App = () => {
                             {showSettings ? 'Hide Settings' : 'Show Settings'}
                         </button>
                     </div>
-                    <div className="log-info">
-                        Log ID: {currentLogId}
-                    </div>
+                </div>
+                <div className="log-info">
+                    Log ID: {currentLogId}
                 </div>
             </div>
 
